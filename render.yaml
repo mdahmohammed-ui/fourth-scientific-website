@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: fourth-scientific-website
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: ADMIN_API_KEY
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: SITE_URL
+        sync: false
+      - key: BOT_USERNAME
+        value: YIFiabot
+      - key: OWNER_ID
+        value: "7683201905"
+      - key: MANDATORY_CHANNEL
+        value: "@Kii_8i"
+      - key: LOG_LEVEL
+        value: INFO

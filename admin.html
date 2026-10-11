@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow"><title>إدارة الموقع | الرابع العلمي</title>
+  <link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/admin.css">
+</head>
+<body class="admin-body">
+  <header class="topbar admin-topbar"><a class="brand" href="/"><span class="brand-mark">٤</span><span class="brand-copy"><strong>الرابع العلمي</strong><small>لوحة إدارة الموقع</small></span></a><a class="quiet-btn" href="/">العودة للموقع ↗</a></header>
+  <main class="admin-main">
+    <section class="admin-login panel">
+      <div><p class="eyebrow">دخول المالك</p><h1>إدارة المكتبة</h1><p class="muted">هذه اللوحة تستخدم مفتاح الإدارة الموجود في إعدادات الخادم، وليس كلمة مرور محفوظة بالموقع.</p></div>
+      <form id="loginForm" class="login-row"><input id="adminKey" class="admin-input" type="password" autocomplete="current-password" placeholder="مفتاح الإدارة ADMIN_API_KEY" required><button class="primary-btn" type="submit">اتصال آمن</button><button id="logoutBtn" class="secondary-btn" type="button" hidden>خروج</button></form>
+      <p id="adminMessage" class="admin-message" role="status"></p>
+    </section>
+    <div id="adminDashboard" hidden>
+      <section id="adminStats" class="admin-stats"></section>
+      <section class="panel admin-section">
+        <div class="admin-section-heading"><div><p class="eyebrow">المواد الدراسية</p><h2>إدارة المواد</h2></div></div>
+        <form id="subjectForm" class="subject-create"><label>اسم المادة<input id="newSubjectName" class="admin-input" maxlength="120" required placeholder="اسم المادة"></label><label>الرمز<input id="newSubjectEmoji" class="admin-input" maxlength="24" value="📚"></label><button class="primary-btn" type="submit">إضافة مادة ＋</button></form>
+        <div id="adminSubjects" class="admin-subjects"></div>
+      </section>
+      <section class="panel admin-section">
+        <div class="admin-section-heading"><div><p class="eyebrow">بيانات تيليجرام</p><h2 id="fileFormTitle">إضافة ملف للمكتبة</h2><p class="muted">أدخل Telegram file_id الصحيح. الملفات التي يضيفها البوت تظهر هنا تلقائيًا لأنها تستخدم قاعدة البيانات نفسها.</p></div></div>
+        <form id="fileForm" class="admin-file-form">
+          <input id="editFileId" type="hidden">
+          <label>اسم الملف<input id="fileTitle" class="admin-input" maxlength="180" required placeholder="عنوان واضح للملف"></label>
+          <label>المادة<select id="fileSubject" class="admin-input" required></select></label>
+          <label>القسم<select id="fileKind" class="admin-input" required><option value="book">كتاب</option><option value="note">ملزمة</option><option value="summary">ملخص</option><option value="exam">امتحان</option></select></label>
+          <label>اسم الأستاذ (اختياري)<input id="fileTeacher" class="admin-input" maxlength="160" placeholder="اسم الأستاذ"></label>
+          <label>سنة الإصدار<input id="fileYear" class="admin-input" maxlength="12" value="2026"></label>
+          <label>نوع ملف تيليجرام<select id="fileType" class="admin-input"><option value="document">Document / PDF</option><option value="photo">صورة</option><option value="video">فيديو</option></select></label>
+          <label class="wide-field">Telegram file_id<input id="telegramFileId" class="admin-input" minlength="5" required placeholder="انسخ معرّف الملف من البوت / قاعدة البيانات"></label>
+          <label class="wide-field">Telegram preview_file_id (اختياري للامتحان)<input id="previewFileId" class="admin-input" placeholder="معرّف صورة المعاينة المرفوعة للبوت"></label>
+          <label class="wide-field">الوصف<textarea id="fileDescription" class="admin-input" maxlength="5000" rows="3" placeholder="شرح مختصر عن الملف"></textarea></label>
+          <label class="toggle-label"><input id="fileVisible" type="checkbox" checked> الملف ظاهر بالموقع والبوت</label>
+          <div class="admin-form-actions"><button id="saveFileBtn" class="primary-btn" type="submit">حفظ الملف</button><button id="resetFileForm" class="secondary-btn" type="button">تفريغ النموذج</button></div>
+        </form>
+      </section>
+      <section class="panel admin-section">
+        <div class="admin-section-heading"><div><p class="eyebrow">كل المحتوى</p><h2>الملفات المضافة</h2></div><button id="refreshBtn" class="secondary-btn" type="button">تحديث القائمة ↻</button></div>
+        <div class="admin-filter-row"><input id="adminFileSearch" class="admin-input" placeholder="ابحث بالاسم أو الأستاذ أو المادة"><select id="adminFileKind" class="admin-input"><option value="all">كل الأقسام</option><option value="book">الكتب</option><option value="note">الملازم</option><option value="summary">الملخصات</option><option value="exam">الامتحانات</option></select><select id="adminVisibility" class="admin-input"><option value="all">ظاهر ومخفي</option><option value="visible">الظاهرة</option><option value="hidden">المخفية</option></select></div>
+        <div class="table-wrap"><table class="admin-table"><thead><tr><th>الملف</th><th>القسم</th><th>الحالة</th><th>الاستلام</th><th>إجراءات</th></tr></thead><tbody id="adminFiles"><tr><td colspan="5">اتصل بمفتاح الإدارة لعرض المحتوى.</td></tr></tbody></table></div>
+      </section>
+      <section class="panel admin-section">
+        <div class="admin-section-heading"><div><p class="eyebrow">طلبات الطلاب</p><h2>طلبات الملازم</h2></div></div>
+        <div id="adminRequests" class="request-admin-list"><p class="muted">لا توجد بيانات للعرض.</p></div>
+      </section>
+      <section class="panel admin-section">
+        <div class="admin-section-heading"><div><p class="eyebrow">إعدادات البوت والموقع</p><h2>الإعدادات المشتركة</h2><p class="muted">هذه القيم محفوظة في قاعدة البيانات ويقرأها البوت والموقع.</p></div></div>
+        <form id="settingsForm" class="settings-form">
+          <label>معرّف القناة الإلزامية<input id="settingChannel" class="admin-input" maxlength="120" placeholder="@Kii_8i"></label>
+          <label>رابط الموقع (https)<input id="settingSite" class="admin-input" maxlength="500" placeholder="https://your-site.onrender.com"></label>
+          <label class="wide-field">نص الترحيب<textarea id="settingWelcome" class="admin-input" rows="3" maxlength="2000"></textarea></label>
+          <label class="toggle-label"><input id="settingSubscription" type="checkbox" checked> تفعيل الاشتراك الإجباري (المالك مستثنى)</label>
+          <div class="admin-form-actions"><button class="primary-btn" type="submit">حفظ الإعدادات</button></div>
+        </form>
+      </section>
+    </div>
+    <p class="admin-footnote">تنبيه أمني: لا تشارك مفتاح الإدارة. الإضافة عبر البوت عادةً أسهل؛ لا يحتاج الطالب إلى معرفة Telegram file_id.</p>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="/admin.js" defer></script>
+</body>
+</html>

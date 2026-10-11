@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f7f5">
+  <meta name="description" content="الرابع العلمي — الكتب والملازم والملخصات والامتحانات لطلاب الرابع العلمي.">
+  <title>الرابع العلمي | رابعيون</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23176b52'/%3E%3Ctext x='32' y='45' font-size='42' text-anchor='middle' fill='white' font-family='Arial'%3E٤%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="الصفحة الرئيسية">
+      <span class="brand-mark">٤</span>
+      <span class="brand-copy"><strong>الرابع العلمي</strong><small>مكتبة رابعيون التعليمية</small></span>
+    </a>
+    <nav class="top-nav" aria-label="التنقل الرئيسي">
+      <a href="#library">المكتبة</a><a href="#study-plan">جدول المذاكرة</a><a href="#request">اطلب ملف</a>
+    </nav>
+    <div class="top-actions">
+      <button id="themeToggle" class="icon-btn" type="button" aria-label="تبديل الوضع الليلي" title="الوضع الليلي">◐</button>
+      <a class="telegram-link" href="https://t.me/Kii_8i" target="_blank" rel="noopener noreferrer">قناة رابعيون <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="status-dot"></span> مكتبتك الدراسية بمكان واحد</p>
+        <h1>كل مواد الرابع العلمي،<br><span>مرتّبة إلك.</span></h1>
+        <p class="hero-desc">تصفّح الكتب والملازم والملخصات والامتحانات. تختار الملف، وتستلمه من بوت تيليجرام مباشرة.</p>
+        <div class="hero-actions"><a class="primary-btn" href="#library">تصفّح المكتبة <span aria-hidden="true">←</span></a><a class="text-link" href="https://t.me/YIFiabot" target="_blank" rel="noopener noreferrer">افتح البوت <span aria-hidden="true">↗</span></a></div>
+        <label class="searchbox hero-search" for="searchInput"><span class="search-icon" aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="ابحث عن مادة أو ملف أو مدرس..." autocomplete="off"><kbd>/</kbd></label>
+        <p class="search-hint" id="searchStatus" aria-live="polite">اكتب كلمة حتى تبحث داخل المكتبة.</p>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="visual-circle circle-a"></div><div class="visual-circle circle-b"></div>
+        <div class="visual-sheet sheet-back"></div><div class="visual-sheet sheet-middle"></div>
+        <div class="visual-book"><span class="book-rule"></span><strong>الرابع</strong><b>العلمي</b><span class="book-year">٢٠٢٦</span></div>
+        <div class="float-card float-top"><span class="float-icon">▤</span><span><b>الكتب</b><small>المنهج الدراسي</small></span></div>
+        <div class="float-card float-bottom"><span class="float-icon">✎</span><span><b>الملازم</b><small>مصادرك بترتيب</small></span></div>
+      </div>
+    </section>
+
+    <section class="stats-row" aria-label="معلومات المكتبة">
+      <div class="stat-item"><span class="stat-symbol">▤</span><span><strong id="statSubjects">10</strong><small>مواد دراسية</small></span></div>
+      <div class="stat-item"><span class="stat-symbol">▧</span><span><strong id="statFiles">0</strong><small>ملف متاح</small></span></div>
+      <div class="stat-item"><span class="stat-symbol">↗</span><span><strong id="statDownloads">0</strong><small>استلام عبر البوت</small></span></div>
+      <div class="stat-item"><span class="stat-symbol">◷</span><span><strong>دائمًا</strong><small>تقدر تبحث بأي وقت</small></span></div>
+    </section>
+
+    <section id="library" class="library-section section-space">
+      <div class="section-heading">
+        <div><p class="eyebrow">المكتبة الدراسية</p><h2>شنو تحتاج اليوم؟</h2><p class="section-desc">اختار نوع المحتوى أو المادة، وباقي التفاصيل راح تظهر هنا.</p></div>
+        <button id="showSaved" class="quiet-btn" type="button">الملفات المحفوظة <span id="savedCount">0</span></button>
+      </div>
+
+      <div class="category-tabs" role="tablist" aria-label="نوع المحتوى">
+        <button class="category-tab active" data-category="all" role="tab" aria-selected="true">الكل</button>
+        <button class="category-tab" data-category="books" role="tab" aria-selected="false"><span>▤</span> الكتب</button>
+        <button class="category-tab" data-category="notes" role="tab" aria-selected="false"><span>✎</span> الملازم</button>
+        <button class="category-tab" data-category="summaries" role="tab" aria-selected="false"><span>≡</span> الملخصات</button>
+        <button class="category-tab" data-category="exams" role="tab" aria-selected="false"><span>✓</span> الامتحانات</button>
+      </div>
+
+      <div class="content-layout">
+        <aside class="subjects-panel">
+          <div class="panel-title"><h3>المواد الدراسية</h3><span id="subjectCount">10</span></div>
+          <p>اختار مادة حتى تظهر ملفاتها.</p>
+          <div id="subjectList" class="subject-list"><div class="skeleton-line"></div><div class="skeleton-line"></div><div class="skeleton-line"></div></div>
+          <button class="clear-filters" id="clearFilters" type="button">مسح التصفية</button>
+        </aside>
+        <section class="files-panel" aria-live="polite">
+          <div class="files-heading"><div><p class="eyebrow">نتائج المكتبة</p><h3 id="resultsTitle">كل الملفات</h3></div><span id="resultCount" class="count-pill">جارٍ التحميل...</span></div>
+          <div id="fileGrid" class="file-grid"><div class="loading-card"></div><div class="loading-card"></div><div class="loading-card"></div></div>
+          <div id="emptyState" class="empty-state" hidden><span class="empty-symbol">⌕</span><strong>ما لكينا نتائج</strong><p>جرّب كلمة بحث ثانية أو غيّر القسم والمادة.</p><button id="resetSearch" class="secondary-btn" type="button">عرض كل الملفات</button></div>
+          <p id="apiNotice" class="api-notice" hidden>تعذر الاتصال بالخادم. تأكد من تشغيل الموقع والـ API.</p>
+        </section>
+      </div>
+    </section>
+
+    <section class="discovery-grid section-space">
+      <div class="discovery-card">
+        <div class="mini-heading"><div><p class="eyebrow">أحدث الإضافات</p><h2>نزلت حديثًا</h2></div><span class="section-mark">01</span></div>
+        <div id="latestFiles" class="compact-list"><p class="muted">جارٍ التحميل...</p></div>
+      </div>
+      <div class="discovery-card">
+        <div class="mini-heading"><div><p class="eyebrow">الأكثر طلبًا</p><h2>الأكثر استلامًا</h2></div><span class="section-mark">02</span></div>
+        <div id="popularFiles" class="compact-list"><p class="muted">جارٍ التحميل...</p></div>
+      </div>
+    </section>
+
+    <section id="study-plan" class="planner-section section-space">
+      <div class="planner-intro"><p class="eyebrow">نظّم وقتك</p><h2>جدول مذاكرتك</h2><p>أضف المهام الدراسية وخليها محفوظة على جهازك حتى ترجع إلها بعدين.</p><div class="planner-note">الجدول خاص بجهازك حاليًا، وما ينحفظ بقاعدة بيانات الموقع.</div></div>
+      <div class="planner-card">
+        <form id="studyForm" class="study-form">
+          <label>المادة<select id="studySubject" required><option value="">اختار المادة</option></select></label>
+          <label>شنو تدرس؟<input id="studyTopic" type="text" maxlength="120" required placeholder="مثلاً: الفصل الأول"></label>
+          <label>اليوم<select id="studyDay" required><option>الأحد</option><option>الاثنين</option><option>الثلاثاء</option><option>الأربعاء</option><option>الخميس</option><option>الجمعة</option><option>السبت</option></select></label>
+          <label>الوقت<input id="studyTime" type="time" value="17:00" required></label>
+          <button class="primary-btn form-submit" type="submit">إضافة للجدول <span>＋</span></button>
+        </form>
+        <div id="studyTasks" class="study-tasks"><p class="muted">ما أضفت مهام لحد الآن.</p></div>
+      </div>
+    </section>
+
+    <section id="request" class="request-section section-space">
+      <div class="request-copy"><p class="eyebrow">ما لكيت الملف؟</p><h2>اطلب ملزمتك أو ملفك</h2><p>اكتب المادة والتفاصيل، وينحفظ طلبك حتى يوصّل للمالك عبر البوت عند تشغيله.</p><div class="request-small">لا تكتب كلمة مرور أو أي معلومات حساسة.</div></div>
+      <form id="requestForm" class="request-form">
+        <label>المادة<select id="requestSubject" required><option value="">اختار المادة</option></select></label>
+        <label>شنو الملف اللي تحتاجه؟<textarea id="requestDetails" minlength="4" maxlength="2000" rows="3" required placeholder="اسم الملزمة أو المدرس أو وصف الملف..."></textarea></label>
+        <label>يوزر تيليجرام للتواصل (اختياري)<input id="requestContact" maxlength="180" placeholder="@username"></label>
+        <button class="primary-btn form-submit" type="submit">إرسال الطلب <span>←</span></button>
+        <p id="requestStatus" class="form-status" role="status"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a class="brand footer-brand" href="#top"><span class="brand-mark">٤</span><span class="brand-copy"><strong>الرابع العلمي</strong><small>رابعيون</small></span></a>
+    <p>مكتبة دراسية لطلاب الرابع العلمي.</p>
+    <div class="footer-links"><a href="https://t.me/Kii_8i" target="_blank" rel="noopener noreferrer">قناة رابعيون ↗</a><a href="https://t.me/YIFiabot" target="_blank" rel="noopener noreferrer">بوت الملفات ↗</a><a href="/admin.html">إدارة الموقع</a></div>
+  </footer>
+
+  <div id="previewModal" class="modal" hidden role="dialog" aria-modal="true" aria-label="معاينة صورة الامتحان">
+    <button id="closePreview" class="modal-close" type="button" aria-label="إغلاق المعاينة">×</button>
+    <div class="preview-stage"><img id="previewImage" alt="صورة معاينة الملف"><p id="previewCaption"></p></div>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="/app.js" defer></script>
+</body>
+</html>
